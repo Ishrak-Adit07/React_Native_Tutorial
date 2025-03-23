@@ -1,6 +1,5 @@
-import { View, Text } from "react-native";
-import React from "react";
 import { Tabs } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 
 const _layout = () => {
   return (
@@ -10,29 +9,57 @@ const _layout = () => {
         options={{
           title: "Home",
           headerShown: false,
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "home" : "home-outline"}
+              size={24}
+              color={color}
+            />
+          ),
         }}
-      ></Tabs.Screen>
+      />
       <Tabs.Screen
         name="search"
         options={{
           title: "Search",
           headerShown: false,
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "search" : "search-outline"}
+              size={24}
+              color={color}
+            />
+          ),
         }}
-      ></Tabs.Screen>
+      />
       <Tabs.Screen
         name="saved"
         options={{
           title: "Saved",
           headerShown: false,
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "bookmark" : "bookmark-outline"}
+              size={24}
+              color={color}
+            />
+          ),
         }}
-      ></Tabs.Screen>
+      />
       <Tabs.Screen
         name="profile"
         options={{
           title: "Profile",
           headerShown: false,
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "person" : "person-outline"}
+              size={24}
+              color={color}
+            />
+          ),
         }}
-      ></Tabs.Screen>
+      />
     </Tabs>
   );
 };
