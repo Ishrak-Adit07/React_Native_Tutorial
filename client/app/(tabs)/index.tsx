@@ -1,8 +1,9 @@
 import { Image, ScrollView } from "react-native";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { Text, View } from "react-native";
 import { images } from "@/constants/images";
 import { icons } from "@/constants/icons";
+import SearchBar from "@/components/SearchBar";
 
 export default function Index() {
   return (
@@ -17,6 +18,15 @@ export default function Index() {
         }}
       >
         <Image source={icons.logo} className="w-12 h-10 mt-20 mb-5 mx-auto" />
+
+        <View className="flex-1 mt-5">
+          <SearchBar
+            placeHolder="Search for a movie"
+            onPress={() => {
+              router.push("/search");
+            }}
+          />
+        </View>
       </ScrollView>
     </View>
   );
