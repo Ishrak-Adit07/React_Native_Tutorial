@@ -9,17 +9,6 @@ export default function Index() {
         to my movie app
       </Text>
 
-      <Link href="/onboarding" className="mt-4">
-        Onboarding
-      </Link>
-
-      <Link
-        href={{ pathname: "/movie/[id]", params: { id: "Avengers" } }}
-        className="mt-4"
-      >
-        Avengers
-      </Link>
-
       {/* <Text className="text-xl text-dark-100 font-thin mt-4">example text</Text> */}
     </View>
   );
