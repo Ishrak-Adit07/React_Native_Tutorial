@@ -15,6 +15,8 @@ const search = () => {
     data: movies,
     loading,
     error,
+    refetch: loadMovies,
+    reset,
   } = useFetch(
     () =>
       fetchMovies({
@@ -22,6 +24,17 @@ const search = () => {
       }),
     false
   );
+
+  useEffect(() => {
+    const func = async () => {
+      if (searchQuery.trim()) {
+        await loadMovies();
+      } else {
+        reset();
+      }
+    };
+    func();
+  }, [searchQuery]);
 
   return (
     <View className="flex-1 bg-primary">
