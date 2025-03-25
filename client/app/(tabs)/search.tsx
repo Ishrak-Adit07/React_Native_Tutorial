@@ -1,5 +1,5 @@
 import { View, Text, Image, ActivityIndicator } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { images } from "@/constants/images";
 import { FlatList } from "react-native";
 import MovieCard from "@/components/MovieCard";
@@ -9,14 +9,18 @@ import { icons } from "@/constants/icons";
 import SearchBar from "@/components/SearchBar";
 
 const search = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
   const {
     data: movies,
     loading,
     error,
-  } = useFetch(() =>
-    fetchMovies({
-      query: "",
-    })
+  } = useFetch(
+    () =>
+      fetchMovies({
+        query: searchQuery,
+      }),
+    false
   );
 
   return (
@@ -47,7 +51,11 @@ const search = () => {
               <Image source={icons.logo} className="w-12 h-10" />
             </View>
             <View className="my-5">
-              <SearchBar placeHolder="Search for a movie" />
+              <SearchBar
+                placeHolder="Search for a movie"
+                value={searchQuery}
+                onChangeText={(text: string) => setSearchQuery(text)}
+              />
             </View>
 
             {loading && (
@@ -66,11 +74,11 @@ const search = () => {
 
             {!loading &&
               !error &&
-              "SEARCH TERM".trim() &&
+              searchQuery.trim() &&
               movies?.length! > 0 && (
                 <Text className="text-xl text-white font-bold">
                   Search results for{" "}
-                  <Text className="text-accent">SEARCH TERM</Text>
+                  <Text className="text-accent">{searchQuery}</Text>
                 </Text>
               )}
           </>

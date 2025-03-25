@@ -6,9 +6,11 @@ import { useRouter } from "expo-router";
 interface Props {
   placeHolder: string;
   onPress?: () => void;
+  value: string;
+  onChangeText?: (text: string) => void;
 }
 
-const SearchBar = ({ placeHolder, onPress }: Props) => {
+const SearchBar = ({ placeHolder, value, onPress, onChangeText }: Props) => {
   const router = useRouter();
 
   return (
@@ -23,8 +25,8 @@ const SearchBar = ({ placeHolder, onPress }: Props) => {
       <TextInput
         onPress={onPress}
         placeholder={placeHolder}
-        value=""
-        onChangeText={() => {}}
+        value={value}
+        onChangeText={onChangeText}
         placeholderTextColor={"#ab8bff"}
         className="flex-1 ml-2 text-white"
       />
